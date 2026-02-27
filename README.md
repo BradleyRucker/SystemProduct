@@ -64,7 +64,7 @@ build_sidecar.bat   # Windows
 
 ```bash
 cd sidecar
-chmod +x build_sidecar.sh
+chmod +x build_sidecar.sh  # Linux
 ./build_sidecar.sh
 ```
 
