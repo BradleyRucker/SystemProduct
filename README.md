@@ -62,6 +62,12 @@ cd sidecar
 build_sidecar.bat   # Windows
 ```
 
+```bash
+cd sidecar
+chmod +x build_sidecar.sh
+./build_sidecar.sh
+```
+
 ### 4. Download LLaMA binaries (optional — for local AI)
 
 The local LLM feature uses [llama.cpp](https://github.com/ggerganov/llama.cpp). Download the Windows CPU build and extract it to `src-tauri/resources/llama/`. Place a compatible GGUF model in `src-tauri/resources/models/`.
