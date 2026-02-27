@@ -1,0 +1,116 @@
+/**
+ * SysML visual notation helpers.
+ * These are CSS classes applied to canvas SVG/DOM elements
+ * to enforce correct SysML notation styling.
+ * The actual shapes are rendered in PixiJS — these styles
+ * apply to HTML overlay labels and property panels.
+ */
+
+/* ── Stereotype labels (e.g. «block», «requirement») ── */
+.sysml-stereotype {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-normal);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ── Node kind badges ── */
+.node-kind-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.node-kind-badge.requirement { background: var(--color-requirement-bg); color: var(--color-requirement); }
+.node-kind-badge.block        { background: var(--color-block-bg);       color: var(--color-block); }
+.node-kind-badge.interface    { background: var(--color-interface-bg);    color: var(--color-interface); }
+.node-kind-badge.port         { background: var(--color-port-bg);         color: var(--color-port); }
+.node-kind-badge.test_case    { background: var(--color-test-case-bg);    color: var(--color-test-case); }
+.node-kind-badge.use_case     { background: var(--color-use-case-bg);     color: var(--color-use-case); }
+.node-kind-badge.actor        { background: var(--color-actor-bg);        color: var(--color-actor); }
+.node-kind-badge.function     { background: var(--color-function-bg);     color: var(--color-function); }
+
+/* ── Edge kind labels ── */
+.edge-label {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* «satisfies», «verifies» etc. */
+.edge-label::before { content: '«'; }
+.edge-label::after  { content: '»'; }
+
+/* ── Requirement ID chip ── */
+.req-id {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-requirement);
+  background: var(--color-requirement-bg);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Verification method badge ── */
+.verif-badge {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  padding: 0 4px;
+}
+
+/* ── Priority indicators ── */
+.priority-shall   { color: var(--color-error);   }
+.priority-should  { color: var(--color-warning);  }
+.priority-may     { color: var(--text-muted);     }
+
+/* ── Status dots ── */
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.status-dot.draft    { background: var(--text-muted); }
+.status-dot.approved { background: var(--color-success); }
+.status-dot.obsolete { background: var(--surface-border); }
+
+/* ── Test status indicators ── */
+.test-pass { color: var(--color-success); }
+.test-fail { color: var(--color-error); }
+.test-not-run { color: var(--text-muted); }
+
+/* ── AI ghost state (HTML overlays) ── */
+.ai-ghost {
+  opacity: 0.6;
+  border: 1.5px dashed var(--color-ai-ghost-border) !important;
+  animation: ghost-pulse 2s ease-in-out infinite;
+}
+
+.ai-sparkle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--color-ai-ghost-border);
+  font-size: 10px;
+}
+
+@keyframes ghost-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 0.75; }
+}
+
+/* ── Validation severity indicators ── */
+.issue-error   { color: var(--color-error);   }
+.issue-warning { color: var(--color-warning); }
+.issue-info    { color: var(--color-info);    }

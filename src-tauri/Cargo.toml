@@ -1,0 +1,50 @@
+[package]
+name = "systemproduct-lib"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "systemproduct_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[[bin]]
+name = "systemproduct"
+path = "src/main.rs"
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+
+# Async
+tokio = { version = "1", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+# Database
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio-native-tls", "migrate", "chrono", "uuid"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Utilities
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1"
+
+# HTTP client for Anthropic API
+reqwest = { version = "0.11", features = ["json", "stream"] }
+
+# GraphRAG-rs — knowledge-graph-aware requirement extraction over Ollama
+# Not yet published to crates.io; referenced via git.
+graphrag-core = { git = "https://github.com/automataIA/graphrag-rs.git", features = ["async"] }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

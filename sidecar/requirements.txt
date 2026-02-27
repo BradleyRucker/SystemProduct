@@ -1,0 +1,3 @@
+spacy>=3.7,<4.0
+# After pip install, also run:
+#   python -m spacy download en_core_web_sm

@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# SvelteKit build output
+build/
+.svelte-kit/
+
+# Rust build artifacts
+src-tauri/target/
+src-tauri/gen/
+
+# Environment variables — NEVER commit secrets
+.env
+
+# Large binary assets (download separately — see README)
+src-tauri/resources/llama/
+src-tauri/resources/models/
+src-tauri/**/*.zip
+src-tauri/binaries/
+
+# Python sidecar build artifacts
+sidecar/__pycache__/
+sidecar/dist/
+sidecar/build_tmp/
+sidecar/*.spec
+
+# Log files
+dev-start.out.log
+dev-start.err.log
+*.log
+
+# OS files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Claude Code session data
+.claude/

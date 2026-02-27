@@ -1,0 +1,192 @@
+@import "./styles/tokens.css";
+@import "./styles/sysml-symbols.css";
+
+#app,
+.app-root {
+    height: 100vh;
+    overflow: hidden;
+    display: contents;
+}
+
+/* App shell */
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--surface-base);
+}
+
+.app-topbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-raised);
+    border-bottom: 1px solid var(--surface-border);
+    flex-shrink: 0;
+}
+
+.app-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+}
+
+.app-subtitle {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.app-spacer {
+    flex: 1;
+}
+
+.app-shell-content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-btn {
+    padding: 4px var(--space-2);
+    background: none;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+.app-btn:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+}
+.app-btn:active {
+    transform: scale(0.97);
+}
+.app-btn.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent-hover);
+}
+
+/* Page layout helpers */
+.page-frame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+.page-header {
+    flex-shrink: 0;
+}
+
+.page-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+.page-body.no-scroll {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Page transition wrapper ── */
+/* Used by each page's outermost container to fade in on mount */
+.page-enter {
+    animation: pageEnter var(--transition-normal) ease both;
+    will-change: opacity, transform;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Canvas loading placeholder ── */
+.canvas-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    height: 100%;
+    width: 100%;
+    background: var(--surface-base);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+/* ── Icon transition wrapper ── */
+/* Wrap icon swap pairs in this for smooth cross-fade */
+.icon-swap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-swap > * {
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+/* Subtle polish for tab switches in page-level segmented controls */
+button[class*="tab"],
+[role="tab"] {
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+button[class*="tab"]:active,
+[role="tab"]:active {
+    transform: translateY(1px);
+}
+
+/* ── Dropdown/popover enter animation ── */
+.dropdown-enter {
+    animation: scaleIn var(--transition-fast) var(--transition-spring) both;
+    transform-origin: top left;
+}
+
+/* ── Notification / toast banner ── */
+.notify-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    animation: slideDown var(--transition-normal) ease both;
+}
+.notify-banner.error {
+    background: var(--color-error-bg);
+    border: 1px solid #ef444430;
+    color: var(--color-error);
+}
+.notify-banner.success {
+    background: var(--color-success-bg);
+    border: 1px solid #22c55e30;
+    color: var(--color-success);
+}
+.notify-banner.info {
+    background: var(--color-info-bg);
+    border: 1px solid #3b82f630;
+    color: var(--color-info);
+}
